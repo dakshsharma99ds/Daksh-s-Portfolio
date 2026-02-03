@@ -181,6 +181,18 @@
             align-items: center;
         }
 
+        .floating-container {
+            animation: floatAnimation 4s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
         .profile-box {
             width: 100%;
             max-width: 350px;
@@ -272,6 +284,11 @@
         }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .contact-info h2 { font-size: 2.5rem; margin-bottom: 1rem; letter-spacing: -1px; }
+        
+        .footer-highlight {
+            color: var(--accent);
+        }
+
         .contact-item { margin-bottom: 1.5rem; }
         .contact-item h4 { color: var(--accent); font-family: 'JetBrains Mono'; margin-bottom: 5px; font-size: 0.75rem; text-transform: uppercase; }
         
@@ -346,8 +363,10 @@
         </div>
         
         <div class="photo-container">
-            <div class="profile-box" id="photo-reveal">
-               <img src="profile.png" alt="Daksh Sharma" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="floating-container">
+                <div class="profile-box" id="photo-reveal">
+                   <img src="profile.png" alt="Daksh Sharma" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
             </div>
         </div>
     </section>
@@ -377,7 +396,7 @@
     <section id="contact">
         <div class="contact-grid">
             <div class="contact-info">
-                <h2>Let's build something <br> exceptional.</h2>
+                <h2>Let's build something <br> <span class="footer-highlight">exceptional.</span></h2>
                 <p style="color: var(--text-dim); margin-top: 1rem;">I'm currently looking for new opportunities and collaborations.</p>
             </div>
             <div class="contact-details">

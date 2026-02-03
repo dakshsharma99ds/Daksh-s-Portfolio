@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daksh Sharma Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0510;
+            --card-bg: #150b24;
+            --accent: #bc13fe;
+            --accent-glow: rgba(188, 19, 254, 0.4);
+            --text-main: #ffffff;
+            --text-dim: #b8a9c9;
+            --grid-color: rgba(188, 19, 254, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 10%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 5, 16, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(188, 19, 254, 0.1);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            padding: 0 10%;
+            gap: 40px;
+        }
+
+        .hero-text .label-container {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: block;
+            min-height: 1.5rem;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .name-gradient {
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(to right, #cd94ff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .fade-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 2rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+            /* Added Flex to control word spacing */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; 
+        }
+
+        .hero-text h1 span {
+            display: inline-flex;
+            gap: 15px;
+        }
+
+        .typing::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: var(--accent);
+            margin-left: 4px;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero-text p {
+            max-width: 550px;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            min-height: 3.5em;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-3px);
+        }
+
+        .photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-box {
+            width: 350px;
+            height: 350px;
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            background: var(--card-bg);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.15);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .visible {
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
+        }
+
+        #work { padding: 120px 10% 100px; }
+        .section-title { font-size: 2.5rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 20px; }
+        .section-title::after { content: ""; height: 1px; background: rgba(188,19,254,0.15); flex-grow: 1; }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(188,19,254,0.1);
+            border-radius: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            opacity: 0; 
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card.reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(188, 19, 254, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .project-content { padding: 4rem; }
+        .project-content h3 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        
+        .tech-stack { display: flex; gap: 12px; margin: 2rem 0; }
+        .tech-stack small {
+            background: rgba(188, 19, 254, 0.1);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+        }
+
+        .project-image {
+            background: linear-gradient(135deg, #1a0b2e 0%, #0a0510 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .wlinks-img-box {
+            width: 100%;
+            height: 100%;
+            background: #0a0510;
+            border: 1px solid rgba(188,19,254,0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            opacity: 1 !important;
+        }
+
+        .wlinks-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #contact { 
+            padding: 120px 10% 80px; 
+            background: #07030a;
+            border-top: 1px solid rgba(188,19,254,0.1);
+        }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .contact-info h2 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: -1px; }
+        .contact-item { margin-bottom: 2rem; }
+        .contact-item h4 { color: var(--accent); font-family: 'JetBrains Mono'; margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; }
+        
+        .contact-item a { 
+            color: var(--text-main); 
+            text-decoration: none; 
+            font-size: 1.2rem; 
+            transition: color 0.3s ease; 
+        }
+        .contact-item a:hover { 
+            color: var(--accent); 
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; text-align: center; height: auto; padding-top: 150px; }
+            .hero-text h1 { justify-content: center; }
+            .profile-box { width: 280px; height: 280px; margin: 0 auto; }
+            .project-card { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">About Me</div>
+        <div class="nav-links">
+            <a href="#work">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <div class="label-container" id="type-label"></div>
+            <h2 class="name-gradient fade-reveal" id="hero-name">DAKSH SHARMA</h2>
+            <h1 class="fade-reveal" id="hero-title">
+                Always 
+                <span>
+                    <span style="color: var(--accent);">Learning</span>
+                    <span style="color: var(--accent);">and</span>
+                    <span style="color: var(--accent);">Developing.</span>
+                </span>
+            </h1>
+            <p id="type-description"></p>
+            <div class="fade-reveal" id="hero-btn">
+                <a href="#work" class="btn btn-primary">View My Work</a>
+            </div>
+        </div>
+        
+        <div class="photo-container">
+            <div class="profile-box" id="photo-reveal">
+               <img src="profile.png" alt="Daksh Sharma" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <div id="work">
+        <h2 class="section-title">Featured Project</h2>
+        <div class="project-card" id="project-target">
+            <div class="project-content">
+                <small style="color: var(--accent)">Web Application</small>
+                <h3>WLinks</h3>
+                <p>A centralized link resource platform designed for ease of access, efficiency and speed. Built with modern web standards.</p>
+                <div class="tech-stack">
+                    <small>REACT</small>
+                    <small>FIGMA</small>
+                    <small>JS</small>
+                </div>
+                <a href="https://wlinks.vercel.app/" target="_blank" class="btn btn-outline">Launch Wlinks</a>
+            </div>
+            <div class="project-image">
+                <div class="wlinks-img-box">
+                    <img src="ss.png" alt="Wlinks Project Preview">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="contact">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Let's build something <br> exceptional.</h2>
+                <p style="color: var(--text-dim); margin-top: 1rem;">I'm currently looking for new opportunities and collaborations.</p>
+            </div>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <h4>Direct Email</h4>
+                    <a href="mailto:dakshsharma999dd@gmail.com">dakshsharma999dd@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <h4>WhatsApp / Call</h4>
+                    <a href="tel:8368919353">+91 8368919353</a>
+                </div>
+                <div class="contact-item">
+                    <h4>Digital Presence</h4>
+                    <div style="margin-top: 10px;">
+                        <a href="https://github.com/dakshsharma99ds" target="_blank" style="margin-right: 25px;">GitHub</a>
+                        <a href="https://www.linkedin.com/in/dakshsharma2939/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+
+        const labelText = "UI/UX • FRONTEND • REACT";
+        const descText = "Hi, it's Daksh Sharma here. I transform complex ideas into simple, beautiful digital products. Specializing in HTML, CSS, JS, React, Figma, and Affinity.";
+        
+        const labelEl = document.getElementById('type-label');
+        const descEl = document.getElementById('type-description');
+
+        function typeWriter(text, element, speed) {
+            let i = 0;
+            element.classList.add('typing');
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing');
+                }
+            }
+            type();
+        }
+
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                } else {
+                    entry.target.classList.remove('reveal-visible');
+                }
+            });
+        }, observerOptions);
+
+        window.onload = () => {
+            window.scrollTo(0, 0);
+            observer.observe(document.getElementById('project-target'));
+            
+            document.getElementById('hero-name').classList.add('visible');
+            document.getElementById('hero-title').classList.add('visible');
+            document.getElementById('photo-reveal').classList.add('visible');
+            document.getElementById('hero-btn').classList.add('visible');
+            typeWriter(labelText, labelEl, 50);
+            typeWriter(descText, descEl, 30);
+            setTimeout(() => {
+                document.documentElement.classList.add('smooth-scroll');
+            }, 100);
+        };
+    </script>
+</body>
+</html>

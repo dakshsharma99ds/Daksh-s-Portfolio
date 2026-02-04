@@ -61,6 +61,12 @@
             font-size: 1.1rem;
             letter-spacing: 1px;
             text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
         }
 
         .nav-links a {
@@ -69,6 +75,7 @@
             margin-left: 1.5rem;
             font-size: 0.85rem;
             transition: 0.3s;
+            white-space: nowrap;
         }
 
         .nav-links a:hover { color: var(--accent); }
@@ -308,6 +315,7 @@
             text-shadow: 0 0 10px var(--accent-glow);
         }
 
+        /* Responsive Media Queries */
         @media (max-width: 968px) {
             nav { padding: 1.2rem 5%; }
             .hero { 
@@ -329,9 +337,19 @@
         }
 
         @media (max-width: 480px) {
-            nav { justify-content: center; flex-direction: column; gap: 10px; }
-            .nav-links { margin-top: 5px; }
-            .nav-links a { margin: 0 10px; }
+            /* FIXED NAVBAR FOR MOBILE */
+            nav { 
+                padding: 1rem 5%;
+                justify-content: space-between; 
+                flex-direction: row; 
+                gap: 0;
+            }
+            .logo { font-size: 0.9rem; }
+            .nav-links a { 
+                margin-left: 1rem; 
+                font-size: 0.75rem; 
+            }
+            
             .hero { padding-left: 20px; padding-right: 20px; }
             #work, #contact { padding-left: 20px; padding-right: 20px; }
             .name-gradient { font-size: 3rem; }

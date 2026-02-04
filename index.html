@@ -285,6 +285,75 @@
             display: block;
         }
 
+        #learning { padding: 60px 0 100px; overflow: hidden; }
+        .learning-header { padding: 0 10%; }
+        
+        .marquee-container {
+            display: flex;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 50px;
+            animation: scroll 40s linear infinite; 
+            width: max-content;
+        }
+
+        .marquee-container:hover .marquee-track {
+            animation-play-state: running;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 20px)); }
+        }
+
+        .learning-card {
+            width: 320px;
+            background: var(--card-bg);
+            border: 1px solid rgba(188, 19, 254, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+
+        .learning-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .cert-img-box {
+            width: 100%;
+            height: 180px;
+            background: #07030a;
+            border-bottom: 1px solid rgba(188, 19, 254, 0.05);
+            overflow: hidden;
+        }
+
+        .cert-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .learning-card:hover .cert-img-box img { opacity: 1; }
+
+        .learning-info { padding: 20px; }
+        .learning-info h4 {
+            font-family: 'JetBrains Mono';
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .learning-info p { font-weight: 700; margin-bottom: 8px; font-size: 1rem; }
+        .learning-info small { color: var(--text-dim); line-height: 1.4; display: block; font-size: 0.8rem; }
+
         #contact { 
             padding: 100px 10% 60px; 
             background: #07030a;
@@ -293,10 +362,7 @@
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .contact-info h2 { font-size: 2.5rem; margin-bottom: 1rem; letter-spacing: -1px; }
         
-        .footer-highlight {
-            color: var(--accent);
-        }
-
+        .footer-highlight { color: var(--accent); }
         .contact-item { margin-bottom: 1.5rem; }
         .contact-item h4 { color: var(--accent); font-family: 'JetBrains Mono'; margin-bottom: 5px; font-size: 0.75rem; text-transform: uppercase; }
         
@@ -336,20 +402,12 @@
         }
 
         @media (max-width: 480px) {
-            nav { 
-                padding: 1rem 5%;
-                justify-content: space-between; 
-                flex-direction: row; 
-                gap: 0;
-            }
+            nav { padding: 1rem 5%; justify-content: space-between; flex-direction: row; gap: 0; }
             .logo { font-size: 0.9rem; }
-            .nav-links a { 
-                margin-left: 1rem; 
-                font-size: 0.75rem; 
-            }
+            .nav-links a { margin-left: 1rem; font-size: 0.75rem; }
             
             .hero { padding-left: 20px; padding-right: 20px; }
-            #work, #contact { padding-left: 20px; padding-right: 20px; }
+            #work, #contact, .learning-header { padding-left: 20px; padding-right: 20px; }
             .name-gradient { font-size: 3rem; }
         }
     </style>
@@ -360,6 +418,7 @@
         <div class="logo">About Me</div>
         <div class="nav-links">
             <a href="#work">Projects</a>
+            <a href="#learning">Certifications</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -414,6 +473,49 @@
             </div>
         </div>
     </div>
+
+    <section id="learning">
+        <div class="learning-header">
+            <h2 class="section-title">Certifications & Growth</h2>
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <div class="learning-card">
+                    <div class="cert-img-box"><img src="cert1.png" alt="Certificate"></div>
+                    <div class="learning-info"><h4>Simplilearn</h4><p>Fundamentals of Data Structure in C</p><small>Learned core Data Structures in C, including pointers, memory management,Lists, Stacks and other algorithmic logic.</small></div>
+                </div>
+                <div class="learning-card">
+                    <div class="cert-img-box"><img src="cert2.png" alt="Certificate"></div>
+                    <div class="learning-info"><h4>CodeTantra</h4><p>Data File Structure in C</p><small>Learned data and file management in C with core Data Structures in C.</small></div>
+                </div>
+                <div class="learning-card">
+                    <div class="cert-img-box"><img src="cert3.png" alt="Certificate"></div>
+                    <div class="learning-info"><h4>Kreativan technologies</h4><p>Basic Full Stack Development</p><small>Gained a foundational understanding of both frontend and backend development.</small></div>
+                </div>
+                <div class="learning-card">
+                    <div class="cert-img-box"><img src="cert4.png" alt="Certificate"></div>
+                    <div class="learning-info"><h4>NS3Edu</h4><p>Web Development Frontend</p><small>Learned to build responsive and interactive user interfaces using HTML, CSS,JS and React.</small></div>
+                </div>
+
+                <div class="learning-card">
+                    <div class="cert-img-box"><img src="cert1.png" alt="Certificate"></div>
+                    <div class="learning-info"><h4>Simplilearn</h4><p>Fundamentals of Data Structure in C</p><small>Learned core Data Structures in C, including pointers, memory management,Lists, Stacks and other algorithmic logic.</small></div>
+                </div>
+                <div class="learning-card">
+                    <div class="cert-img-box"><img src="cert2.png" alt="Certificate"></div>
+                    <div class="learning-info"><h4>CodeTantra</h4><p>Data File Structure in C</p><small>Learned data and file management in C with core Data Structures in C.</small></div>
+                </div>
+                <div class="learning-card">
+                    <div class="cert-img-box"><img src="cert3.png" alt="Certificate"></div>
+                    <div class="learning-info"><h4>Kreativan technologies</h4><p>Basic Full Stack Development</p><small>Gained a foundational understanding of both frontend and backend development.</small></div>
+                </div>
+                <div class="learning-card">
+                    <div class="cert-img-box"><img src="cert4.png" alt="Certificate"></div>
+                    <div class="learning-info"><h4>NS3Edu</h4><p>Web Development Frontend</p><small>Learned to build responsive and interactive user interfaces using HTML, CSS,JS and React.</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="contact">
         <div class="contact-grid">
